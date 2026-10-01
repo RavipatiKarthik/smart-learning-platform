@@ -1,11 +1,24 @@
 import streamlit as st
 
+from backend.database.init_db import initialize_database
+
 from backend.database.db import (
     get_students,
     get_assessments,
     get_quiz_results
 )
 
+
+# --------------------------------------------------
+# Initialize Database
+# --------------------------------------------------
+
+initialize_database()
+
+
+# --------------------------------------------------
+# Page Configuration
+# --------------------------------------------------
 
 st.set_page_config(
     page_title="SmartLearn AI",
@@ -126,6 +139,7 @@ if "student" in st.session_state:
 
     col1, col2 = st.columns(2)
 
+
     with col1:
 
         st.write(
@@ -139,6 +153,7 @@ if "student" in st.session_state:
         st.write(
             f"**Branch:** {student['branch']}"
         )
+
 
     with col2:
 
@@ -210,6 +225,7 @@ st.divider()
 # --------------------------------------------------
 
 st.subheader("🎓 Start Your Learning Journey")
+
 
 if not students:
 
