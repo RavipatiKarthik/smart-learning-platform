@@ -1,18 +1,25 @@
+from pathlib import Path
+
 from backend.rag.document_loader import load_documents
 from backend.rag.text_splitter import split_documents
 from backend.rag.vector_store import create_vector_store
 
 
-PDF_FOLDER = "data/documents/java"
+PDF_FOLDER = "data/documents"
 
 
 def build_rag():
 
-    print("Loading documents...")
+    print("Loading learning documents...")
 
     documents = load_documents(PDF_FOLDER)
 
     print(f"Documents loaded: {len(documents)}")
+
+    if not documents:
+        raise Exception(
+            "No PDF documents found in data/documents/"
+        )
 
     print("Splitting documents...")
 
